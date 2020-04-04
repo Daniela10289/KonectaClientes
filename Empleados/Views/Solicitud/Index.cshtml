@@ -1,0 +1,37 @@
+﻿@model List<Empleados.Models.ViewModels.ListaSolicitudViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Solicitudes</h2>
+
+<div class="row" style="text-align:right; padding:5px;">
+    <a href="~/Solicitud/Nuevo" class="btn btn-primary">Nuevo</a>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>Codigo</th>
+                <th>Descripcion</th>
+                <th>Resumen</th>
+                <th>Nombre empleado</th>
+            </tr>
+            @foreach (var oElemento in Model)
+            {
+                <tr>
+                    <td>@oElemento.Codigo</td>
+                    <td>@oElemento.Descripcion</td>
+                    <td>@oElemento.Resumen</td>
+                    @*<td>@oElemento.Id_em</td>*@
+                        <td>
+                            <a class="btn btn-default" href="~/Solicitud/Editar/@oElemento.Id_solicitud">Editar</a>
+                            @*<a class="btn btn-danger" href="~/Empleado/Eliminar/@oElemento.Codigo">Eliminar</a>*@
+                        </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+

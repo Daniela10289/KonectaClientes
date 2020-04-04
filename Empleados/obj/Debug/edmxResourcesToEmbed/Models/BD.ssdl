@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EMPLEADOSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblEmpleados">
+    <Key>
+      <PropertyRef Name="Id_empleado" />
+    </Key>
+    <Property Name="Id_empleado" Type="int" Nullable="false" />
+    <Property Name="FechaIngreso" Type="date" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Salario" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblSolicitud">
+    <Key>
+      <PropertyRef Name="Id_solicitud" />
+    </Key>
+    <Property Name="Id_solicitud" Type="int" Nullable="false" />
+    <Property Name="Codigo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Resumer" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Id_Empleado_s" Type="int" />
+  </EntityType>
+  <Association Name="FK__tblSolici__Id_Em__5AEE82B9">
+    <End Role="tblEmpleados" Type="Self.tblEmpleados" Multiplicity="0..1" />
+    <End Role="tblSolicitud" Type="Self.tblSolicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblEmpleados">
+        <PropertyRef Name="Id_empleado" />
+      </Principal>
+      <Dependent Role="tblSolicitud">
+        <PropertyRef Name="Id_Empleado_s" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EMPLEADOSModelStoreContainer">
+    <EntitySet Name="tblEmpleados" EntityType="Self.tblEmpleados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSolicitud" EntityType="Self.tblSolicitud" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tblSolici__Id_Em__5AEE82B9" Association="Self.FK__tblSolici__Id_Em__5AEE82B9">
+      <End Role="tblEmpleados" EntitySet="tblEmpleados" />
+      <End Role="tblSolicitud" EntitySet="tblSolicitud" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

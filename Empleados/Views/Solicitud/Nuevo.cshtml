@@ -1,0 +1,39 @@
+﻿@model Empleados.Models.ViewModels.SolicitudViewModel
+@{
+    ViewBag.Title = "Nuevo";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm("Nuevo", "Solicitud", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                @Html.LabelFor(d => d.Codigo)
+                @Html.TextBoxFor(d => d.Codigo, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.Codigo, null, new { @class = "red" })
+            </div><br />
+            <div>
+                @Html.LabelFor(d => d.Descripcion)
+                @Html.TextBoxFor(d => d.Descripcion, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.Descripcion, null, new { @class = "red" })
+            </div><br />
+            <div>
+                @Html.LabelFor(d => d.Resumen)
+                @Html.TextBoxFor(d => d.Resumen, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.Resumen, null, new { @class = "red" })
+            </div><br />
+            @*<div>
+                @Html.LabelFor(d => d.id_em)
+                @Html.TextBoxFor(d => d.id_em, "", new { id_em =  })
+            </div>*@
+
+            <div style="text-align:right">
+                <input type="submit" name="name" value="Guardar" class="btn btn-primary" />
+            </div>
+
+        </div>
+    </div>
+}

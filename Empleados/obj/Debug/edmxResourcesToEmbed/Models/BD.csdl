@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EMPLEADOSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblEmpleados">
+    <Key>
+      <PropertyRef Name="Id_empleado" />
+    </Key>
+    <Property Name="Id_empleado" Type="Int32" Nullable="false" />
+    <Property Name="FechaIngreso" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Salario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblSolicitud" Relationship="Self.FK__tblSolici__Id_Em__5AEE82B9" FromRole="tblEmpleados" ToRole="tblSolicitud" />
+  </EntityType>
+  <EntityType Name="tblSolicitud">
+    <Key>
+      <PropertyRef Name="Id_solicitud" />
+    </Key>
+    <Property Name="Id_solicitud" Type="Int32" Nullable="false" />
+    <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Resumer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Id_Empleado_s" Type="Int32" />
+    <NavigationProperty Name="tblEmpleados" Relationship="Self.FK__tblSolici__Id_Em__5AEE82B9" FromRole="tblSolicitud" ToRole="tblEmpleados" />
+  </EntityType>
+  <Association Name="FK__tblSolici__Id_Em__5AEE82B9">
+    <End Role="tblEmpleados" Type="Self.tblEmpleados" Multiplicity="0..1" />
+    <End Role="tblSolicitud" Type="Self.tblSolicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblEmpleados">
+        <PropertyRef Name="Id_empleado" />
+      </Principal>
+      <Dependent Role="tblSolicitud">
+        <PropertyRef Name="Id_Empleado_s" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EMPLEADOSEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblEmpleados" EntityType="Self.tblEmpleados" />
+    <EntitySet Name="tblSolicitud" EntityType="Self.tblSolicitud" />
+    <AssociationSet Name="FK__tblSolici__Id_Em__5AEE82B9" Association="Self.FK__tblSolici__Id_Em__5AEE82B9">
+      <End Role="tblEmpleados" EntitySet="tblEmpleados" />
+      <End Role="tblSolicitud" EntitySet="tblSolicitud" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

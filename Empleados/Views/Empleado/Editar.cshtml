@@ -1,0 +1,41 @@
+﻿@model Empleados.Models.ViewModels.EmpleadoViewModel
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm("Editar", "Empleado", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            @Html.HiddenFor(d => d.Id_empleado)
+            <div>
+                @Html.LabelFor(d => d.Id_empleado)
+                @Html.TextBoxFor(d => d.Id_empleado, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.Id_empleado, null, new { @class = "red" })
+            </div><br />
+            <div>
+                @Html.LabelFor(d => d.Nombre)
+                @Html.TextBoxFor(d => d.Nombre, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.Nombre, null, new { @class = "red" })
+            </div><br />
+            <div>
+                @Html.LabelFor(d => d.Salario)
+                @Html.TextBoxFor(d => d.Salario, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.Salario, null, new { @class = "red" })
+            </div><br />
+            <div>
+                @Html.LabelFor(d => d.FechaIngreso)<br />
+                @Html.EditorFor(d => d.FechaIngreso, "", new { @class = "form-control" })<br />
+                @Html.ValidationMessageFor(d => d.FechaIngreso, null, new { @class = "red" })
+            </div>
+
+            <div style="text-align:right">
+                <input type="submit" name="name" value="Guardar" class="btn btn-primary" />
+            </div>
+
+        </div>
+    </div>
+}

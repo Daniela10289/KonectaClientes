@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EMPLEADOSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblEmpleados">
+          <Key>
+            <PropertyRef Name="Id_empleado" />
+          </Key>
+          <Property Name="Id_empleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaIngreso" Type="date" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Salario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSolicitudes">
+          <Key>
+            <PropertyRef Name="Id_solicitud" />
+          </Key>
+          <Property Name="Id_solicitud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Resumen" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id_Empleado_s" Type="int" />
+        </EntityType>
+        <Association Name="FK__tblSolici__Id_Em__6477ECF3">
+          <End Role="tblEmpleados" Type="Self.tblEmpleados" Multiplicity="0..1" />
+          <End Role="tblSolicitudes" Type="Self.tblSolicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmpleados">
+              <PropertyRef Name="Id_empleado" />
+            </Principal>
+            <Dependent Role="tblSolicitudes">
+              <PropertyRef Name="Id_Empleado_s" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EMPLEADOSModelStoreContainer">
+          <EntitySet Name="tblEmpleados" EntityType="Self.tblEmpleados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSolicitudes" EntityType="Self.tblSolicitudes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tblSolici__Id_Em__6477ECF3" Association="Self.FK__tblSolici__Id_Em__6477ECF3">
+            <End Role="tblEmpleados" EntitySet="tblEmpleados" />
+            <End Role="tblSolicitudes" EntitySet="tblSolicitudes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EMPLEADOSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblEmpleados">
+          <Key>
+            <PropertyRef Name="Id_empleado" />
+          </Key>
+          <Property Name="Id_empleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaIngreso" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Salario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblSolicitudes" Relationship="Self.FK__tblSolici__Id_Em__6477ECF3" FromRole="tblEmpleados" ToRole="tblSolicitudes" />
+        </EntityType>
+        <EntityType Name="tblSolicitudes">
+          <Key>
+            <PropertyRef Name="Id_solicitud" />
+          </Key>
+          <Property Name="Id_solicitud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Resumen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_Empleado_s" Type="Int32" />
+          <NavigationProperty Name="tblEmpleados" Relationship="Self.FK__tblSolici__Id_Em__6477ECF3" FromRole="tblSolicitudes" ToRole="tblEmpleados" />
+        </EntityType>
+        <Association Name="FK__tblSolici__Id_Em__6477ECF3">
+          <End Role="tblEmpleados" Type="Self.tblEmpleados" Multiplicity="0..1" />
+          <End Role="tblSolicitudes" Type="Self.tblSolicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmpleados">
+              <PropertyRef Name="Id_empleado" />
+            </Principal>
+            <Dependent Role="tblSolicitudes">
+              <PropertyRef Name="Id_Empleado_s" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EMPLEADOSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblEmpleados" EntityType="Self.tblEmpleados" />
+          <EntitySet Name="tblSolicitudes" EntityType="Self.tblSolicitudes" />
+          <AssociationSet Name="FK__tblSolici__Id_Em__6477ECF3" Association="Self.FK__tblSolici__Id_Em__6477ECF3">
+            <End Role="tblEmpleados" EntitySet="tblEmpleados" />
+            <End Role="tblSolicitudes" EntitySet="tblSolicitudes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EMPLEADOSModelStoreContainer" CdmEntityContainer="EMPLEADOSEntities">
+          <EntitySetMapping Name="tblEmpleados">
+            <EntityTypeMapping TypeName="EMPLEADOSModel.tblEmpleados">
+              <MappingFragment StoreEntitySet="tblEmpleados">
+                <ScalarProperty Name="Id_empleado" ColumnName="Id_empleado" />
+                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Salario" ColumnName="Salario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSolicitudes">
+            <EntityTypeMapping TypeName="EMPLEADOSModel.tblSolicitudes">
+              <MappingFragment StoreEntitySet="tblSolicitudes">
+                <ScalarProperty Name="Id_solicitud" ColumnName="Id_solicitud" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Resumen" ColumnName="Resumen" />
+                <ScalarProperty Name="Id_Empleado_s" ColumnName="Id_Empleado_s" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
